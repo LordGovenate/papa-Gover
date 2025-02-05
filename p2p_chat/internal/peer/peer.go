@@ -9,6 +9,8 @@ import (
 
 var username string
 
+//Los mensajes son leídos y enviados utilizando un bufio.Reader y un bufio.Writer, respectivamente. Los mensajes recibidos se imprimen en la consola, mientras que los mensajes enviados se leen desde la entrada estándar del usuario y se envían al peer conectado. La función handleConnection maneja las conexiones entrantes, permitiendo tanto recibir como enviar mensajes de manera simultánea.
+
 func StartListening(port string, user string) {
     username = user
     listener, err := net.Listen("tcp", ":"+port)
