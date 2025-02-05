@@ -1,0 +1,65 @@
+# Excluir directorios de binarios para Go
+bin/
+pkg/
+vendor/
+
+# Archivos de compilación de Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos de compilación de C#
+bin/
+obj/
+*.nupkg
+*.dll
+*.exe
+*.pdb
+
+# Archivos de configuración de la solución de Visual Studio Code
+.vscode/
+.vs/
+
+# Excluir archivos de configuración y caché local
+*.user
+*.cache
+*.suo
+*.userprefs
+
+# Excluir directorios de salida
+out/
+
+# Excluir archivos de configuración de Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Excluir archivos temporales
+*.tmp
+*.temp
+*.bak
+*~
+
+# Excluir archivos de registro
+*.log
+
+# Node modules para cualquier uso de node en el proyecto
+node_modules/
+
+# Excluir archivos de paquetes
+packages/
+
+# Excluir archivos de configuración del IDE que no sean específicos de un proyecto
+*.csproj
+*.vbproj
+*.sln
+*.suo
+*.sublime-workspace
+
+# Excluir otros archivos y directorios que se pueden generar
+.DS_Store
+Thumbs.db
