@@ -6,8 +6,9 @@ using PokemonApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSoapCore();
-
-builder.Services.AddScoped<IPokemonService,PokemonService>();
+//host.docker.internal
+//AddSingleton
+builder.Services.AddSingleton<IPokemonService,PokemonService>();
 builder.Services.AddScoped<IPokemonRepository,PokemonRepository>();
 
 builder.Services.AddDbContext<RelationalDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
