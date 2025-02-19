@@ -11,8 +11,8 @@ using PokemonApi.Infrastructure;
 namespace PokemonApi.Migrations
 {
     [DbContext(typeof(RelationalDbContext))]
-    [Migration("20250217212115_InitialCreate02")]
-    partial class InitialCreate02
+    [Migration("20250218224407_InitialCreate01")]
+    partial class InitialCreate01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
