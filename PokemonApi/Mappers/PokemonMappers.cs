@@ -5,6 +5,19 @@ using PokemonApi.Models;
 namespace PokemonApi.Mappers;
 
 public static class PokemonMappers {
+    public static PokemonEntity ToEntity(this Pokemon pokemon) {
+        return new PokemonEntity {
+            Id = pokemon.Id,
+            Type = pokemon.Type,
+            Name = pokemon.Name,
+            Level = pokemon.Level,
+            Health = pokemon.Health,
+            Attack = pokemon.Stats.Attack,
+            Defense = pokemon.Stats.Defense,
+            Speed = pokemon.Stats.Speed
+        };
+    } // <- Llave de cierre añadida aquí
+
     public static Pokemon ToModel(this PokemonEntity entity) {
         if(entity == null) {
             return null;
