@@ -8,4 +8,5 @@ namespace PokemonApi.Models;
         public string Type { get; set; }
         public int Level { get; set; }
         public Stats Stats { get; set; }
+        public int Health { get; set; }
     }

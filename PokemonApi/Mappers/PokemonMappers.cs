@@ -15,6 +15,7 @@ public static class PokemonMappers {
             Type = entity.Type,
             Name = entity.Name,
             Level = entity.Level,
+            Health = entity.Health,
             Stats = new Stats {
                 Attack = entity.Attack,
                 Defense = entity.Defense,
@@ -29,6 +30,7 @@ public static class PokemonMappers {
             Level = pokemon.Level,
             Type = pokemon.Type,
             Name = pokemon.Name,
+            Health = pokemon.Health,
             Stats = new StatsDto {
                 Attack = pokemon.Stats.Attack,
                 Defense = pokemon.Stats.Defense,

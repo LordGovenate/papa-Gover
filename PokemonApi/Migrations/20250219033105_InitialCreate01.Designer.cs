@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokemonApi.Infrastructure;
 
@@ -10,9 +11,11 @@ using PokemonApi.Infrastructure;
 namespace PokemonApi.Migrations
 {
     [DbContext(typeof(RelationalDbContext))]
-    partial class RelationalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250219033105_InitialCreate01")]
+    partial class InitialCreate01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace PokemonApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Defense")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Health")
                         .HasColumnType("int");
 
                     b.Property<int>("Level")
