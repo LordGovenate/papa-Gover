@@ -19,6 +19,25 @@ namespace PokemonApi.Migrations
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("PokemonApi.Infrastructure.Entities.HobbiesEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("Top")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hobbies");
+                });
+
             modelBuilder.Entity("PokemonApi.Infrastructure.Entities.PokemonEntity", b =>
                 {
                     b.Property<Guid>("Id")
