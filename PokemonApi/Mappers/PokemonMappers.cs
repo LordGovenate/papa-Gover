@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using PokemonApi.Dtos;
 using PokemonApi.Infrastructure.Entities;
 using PokemonApi.Models;
@@ -49,6 +50,27 @@ public static class PokemonMappers {
                 Defense = pokemon.Stats.Defense,
                 Speed = pokemon.Stats.Speed
             }
+        };
+    }
+        public static Pokemon ToModel(this CreatePokemonDto createPokemonDto) {
+            return new Pokemon {
+                Type = createPokemonDto.Type,
+                Name = createPokemonDto.Name,
+                Level = createPokemonDto.Level,
+                Health = createPokemonDto.Health,
+                Stats = new Stats {
+                    Attack = createPokemonDto.Stats.Attack,
+                    Defense = createPokemonDto.Stats.Defense,
+                    Speed = createPokemonDto.Stats.Speed
+                }
+            };
+    }
+
+    public static Stats ToModel(this StatsDto stats) {
+        return new Stats {
+            Attack = stats.Attack,
+            Defense = stats.Defense,
+            Speed = stats.Speed
         };
     }
 }
