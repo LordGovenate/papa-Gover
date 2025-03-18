@@ -11,8 +11,8 @@ using PokemonApi.Infrastructure;
 namespace PokemonApi.Migrations
 {
     [DbContext(typeof(RelationalDbContext))]
-    [Migration("20250218224407_InitialCreate01")]
-    partial class InitialCreate01
+    [Migration("20250306182554_NewAll")]
+    partial class NewAll
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,49 @@ namespace PokemonApi.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("PokemonApi.Infrastructure.Entities.BooksEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime>("PublishedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("PokemonApi.Infrastructure.Entities.HobbiesEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("Top")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hobbies");
+                });
 
             modelBuilder.Entity("PokemonApi.Infrastructure.Entities.PokemonEntity", b =>
                 {
@@ -32,6 +75,9 @@ namespace PokemonApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Defense")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Health")
                         .HasColumnType("int");
 
                     b.Property<int>("Level")
