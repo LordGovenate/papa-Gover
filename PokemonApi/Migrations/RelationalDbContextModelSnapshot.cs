@@ -19,7 +19,7 @@ namespace PokemonApi.Migrations
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("PokemonApi.Infrastructure.Entities.BookEntity", b =>
+            modelBuilder.Entity("PokemonApi.Infrastructure.Entities.BooksEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

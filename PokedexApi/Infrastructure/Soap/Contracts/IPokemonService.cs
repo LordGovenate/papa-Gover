@@ -1,8 +1,8 @@
 using System.ServiceModel;
-using PokemonApi.Dtos;
-using PokemonApi.Models;
+using PokedexApi.Infrastructure.Soap.Dtos;
 
-namespace PokemonApi.Services;
+
+namespace PokedexApi.Infrastructure.Soap.Contracts;
 
 [ServiceContract(Name = "PokemonService", Namespace = "http://pokemonapi/pokemon-service")]
 public interface IPokemonService

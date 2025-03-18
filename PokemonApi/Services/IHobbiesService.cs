@@ -1,4 +1,5 @@
 using System.ServiceModel;
+using PokemonApi.Dtos;
 
 namespace PokemonApi.Services;
 
@@ -13,4 +14,11 @@ namespace PokemonApi.Services;
 
         [OperationContract]
         Task<List<HobbiesResponseDto>> GetHobbieByName(string name, CancellationToken cancellationToken);
+
+        [OperationContract]
+        Task<HobbiesResponseDto> CreateHobbies(CreateHobbiesDto createHobbiesDto, CancellationToken cancellationToken);
+
+        [OperationContract]
+        Task<HobbiesResponseDto> UpdateHobbies(UpdateHobbiesDto hobbies, CancellationToken cancellationToken);
+        
     }
