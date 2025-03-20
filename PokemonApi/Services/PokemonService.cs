@@ -22,6 +22,17 @@ public class PokemonService : IPokemonService
         }
         return pokemon.ToDto();
     }
+
+    public async Task<List<PokemonResponseDto>> GetPokemonByName(string name, CancellationToken cancellationToken)
+    {
+        var pokemons = await _pokemonRepository.GetPokemonByNameAsync(name, cancellationToken);  // Ahora es una lista
+        if (pokemons is null || pokemons.Count == 0) {
+            throw new FaultException("Pokémons no encontrados :(");
+        }
+
+        return pokemons.Select(p => p.ToDto()).ToList(); // Convertir a DTOs y devolver lista
+    }
+
     public async Task<bool> DeletePokemon(Guid id, CancellationToken cancellationToken){
         var pokemon = await _pokemonRepository.GetByIdAsync(id, cancellationToken);
         if (pokemon is null) {
