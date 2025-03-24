@@ -24,16 +24,17 @@ namespace PokemonApi.Services;
             return hobbies.ToDto();
         }
 
-        public async Task<bool> DeleteHobbies(int id, CancellationToken cancellationToken)
+        public async Task<bool> DeleteHobbyAsync(int id, CancellationToken cancellationToken)
+    {
+        var hobby = await _hobbiesRepository.GetHobbyById(id, cancellationToken);
+        if (hobby is null)
         {
-            var hobbies = await _hobbiesRepository.GetHobbyById(id, cancellationToken);
-            if (hobbies == null)
-            {
-                throw new FaultException("Hobbies not found :(");
-            }
-            await _hobbiesRepository.DeleteHobby(hobbies, cancellationToken);
-            return true;
+            throw new FaultException($"Hobby con ID {id} no encontrado.");
         }
+
+        await _hobbiesRepository.DeleteAsync(hobby, cancellationToken);
+        return true;
+    }
 
         public async Task<List<HobbiesResponseDto>> GetHobbieByName(string name, CancellationToken cancellationToken)
         {

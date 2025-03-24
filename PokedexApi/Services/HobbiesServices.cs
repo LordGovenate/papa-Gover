@@ -22,4 +22,10 @@ public class HobbiesService : IHobbiesService
         return response?.ToList() ?? new List<Hobbies>();
     }
 
+    public async Task<bool> DeleteHobbyAsync(int id, CancellationToken cancellationToken)
+    {
+        return await _hobbieRepository.DeleteHobbyAsync(id, cancellationToken);
+    }
+
+
 }

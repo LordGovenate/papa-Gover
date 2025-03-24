@@ -41,5 +41,18 @@ namespace PokedexApi.Controllers
             }
             return Ok(hobbies.Select(h => h.ToDto()).ToList());
         }
+
+                // Eliminar Hobby por ID
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHobby(int id, CancellationToken cancellationToken)
+        {
+            var result = await _hobbiesService.DeleteHobbyAsync(id, cancellationToken);
+            if (!result)
+            {
+                return NotFound();
+            }
+            return NoContent();
 }
+
+    }
 }
