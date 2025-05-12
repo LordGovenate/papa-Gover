@@ -30,4 +30,15 @@ public static class PokemonMappers
             Speed = pokemon.Stats.Speed
         };
     }
+
+    public static Pokemon ToModel(this CreatePokemonRequest pokemon) {
+        return new Pokemon {
+            Name = pokemon.Name,
+            Type = pokemon.Type,
+            Level = pokemon.Level,
+            Attack = pokemon.Attack,
+            Defense = pokemon.Defense,
+            Speed = pokemon.Speed
+        };
+    }
 }

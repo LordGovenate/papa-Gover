@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokedexApi.Services;
 using PokedexApi.Mappers;
 using PokedexApi.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokedexApi.Controllers;
 
@@ -18,6 +19,7 @@ namespace PokedexApi.Controllers;
 
         // Obtener por ID
 [HttpGet("by-id/{id}")]
+[Authorize(Policy = "Read")]
 public async Task<ActionResult<PokemonResponse>> GetPokemonById(Guid id, CancellationToken cancellationToken)
 {
     var pokemon = await _pokemonService.GetPokemonById(id, cancellationToken);
@@ -47,6 +49,7 @@ public async Task<ActionResult<IEnumerable<PokemonResponse>>> GetPokemonByName(s
 }
 
 [HttpDelete("{id}")]
+[Authorize(Policy = "Write")]
     public async Task<ActionResult> DeletePokemonById(Guid id, CancellationToken cancellationToken){
         var deleted = await _pokemonService.DeletePokemonByIdAsync(id, cancellationToken);
         if (deleted){
@@ -55,6 +58,5 @@ public async Task<ActionResult<IEnumerable<PokemonResponse>>> GetPokemonByName(s
         return NotFound();//404
     }
 
-
-    }
+}
 
