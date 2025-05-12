@@ -1,3 +1,4 @@
+using PokedexApi.Exceptions;
 using PokedexApi.Models;
 using PokedexApi.Repositories;
 
@@ -25,4 +26,16 @@ public class PokemonService : IPokemonService {
         return await _pokemonRepository.DeletePokemonByIdAsync(id, cancellationToken);
 
 }
+
+    public async Task<Pokemon> CreatePokemonAsync(Pokemon pokemon, CancellationToken cancellationToken)
+{
+    var existingPokemons = await _pokemonRepository.GetPokemonByNameAsync(pokemon.Name, cancellationToken);
+    if (existingPokemons.Any())
+    {
+        throw new PokemonConflictController($"El Pokémon '{pokemon.Name}' ya existe.");
+    }
+
+    return await _pokemonRepository.CreatePokemonAsync(pokemon, cancellationToken);
+}
+
 }

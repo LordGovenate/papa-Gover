@@ -2,6 +2,8 @@ using PokedexApi.Infrastructure.Soap.Contracts;
 using PokedexApi.Models;
 using System.ServiceModel;
 using PokedexApi.Mappers;
+using PokedexApi.Infrastructure.Soap.Dtos;
+using PokedexApi.Exceptions;
 
 namespace PokedexApi.Repositories;
 
@@ -61,6 +63,40 @@ public class PokemonRepository : IPokemonRepository
         }
     }
 
+    public async Task<Pokemon> CreatePokemonAsync(Pokemon pokemon, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var pokemonCreated = await _pokemonService.CreatePokemon(pokemon.ToSoapDto(), cancellationToken);
+            return pokemonCreated.ToModel();
+        }
+        catch (FaultException ex) when (ex.Message == "Pokemon already exists :(")
+        {
+            throw new PokemonValidationException(ex.Message);
+        }
+        catch (FaultException ex)
+        {
+            _logger.LogError(ex, "Error creating pokemon");
+            throw;
+        }
+    }
+}
 
-
+public static class PokemonExtensions
+{
+    public static CreatePokemonDto ToSoapDto(this Pokemon pokemon)
+    {
+        return new CreatePokemonDto
+        {
+            Name = pokemon.Name,
+            Type = pokemon.Type,
+            Level = pokemon.Level,
+            Stats = new StatsDto
+            {
+                Attack = pokemon.Attack,
+                Defense = pokemon.Defense,
+                Speed = pokemon.Speed
+            }
+        };
+    }
 }

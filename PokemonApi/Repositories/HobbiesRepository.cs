@@ -18,10 +18,18 @@ public class HobbiesRepository : IHobbiesRepository
         return Hobbies.ToModel();
             }
 
-    public async Task DeleteHobby (Hobbies hobbies, CancellationToken cancellationToken) {
-        _context.Hobbies.Remove(hobbies.ToEntity());
-        await _context.SaveChangesAsync(cancellationToken);
-    }
+    public async Task DeleteAsync(Hobbies hobby, CancellationToken cancellationToken)
+{
+    var hobbyEntity = await _context.Hobbies
+        .FirstOrDefaultAsync(h => h.Id == hobby.Id, cancellationToken);
+
+    if (hobbyEntity is null)
+        throw new InvalidOperationException($"Hobby con ID {hobby.Id} no existe.");
+
+    _context.Hobbies.Remove(hobbyEntity);
+    await _context.SaveChangesAsync(cancellationToken);
+}
+
 
     public async Task<List<Hobbies>> GetHobbiesByName(string name, CancellationToken cancellationToken) {
         var hobbies = await _context.Hobbies
